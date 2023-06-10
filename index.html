@@ -73,7 +73,7 @@
     // ❗ Debug properly using the Console
 
     // 👉 CHALLENGE 1
-    function profileActivation() {
+    function profileActivation( profileObject, reasonString ) {
       // 🧠 profileActivation takes two arguments, profile and reason, which are an object and a string respectively
       //  The reason arg is only used -and therefore required- to deactivate profiles, not to activate them
       //  The profile arg has an `active` property holding a Boolean value
@@ -85,6 +85,46 @@
       //    * If the profile is active but it has a `reason` prop, return the string "confirm status manually"
       //    * If the profile is **missing** an `active` prop, return the string "impossible to ascertain status"
       // 🌟 HINT: to confirm the existence of a prop, check that its value is not undefined
+
+      /* 
+      */
+      
+      // reasonString is only used to deactivate profiles. 
+      // profileObject.active holds a Boolean value
+
+      // Edge cases:
+
+      // If the profile is inactive but its `reason` prop is **missing**, return the string "confirm status manually"
+      let inactive = profileObject.active === false ;
+      let profileMissing = profileObject.active === undefined ;
+      let objectReasonMissing = profileObject.reason === undefined;
+      if ( inactive && objectReasonMissing ) {
+        return 'confirm status manually';
+      }
+      // If the profile is active but it has a `reason` prop, return the string "confirm status manually"
+      else if ( !inactive && !objectReasonMissing ) {
+        return 'confirm status manually' ;
+      } 
+      // If the profile is **missing** an `active` prop, return the string "impossible to ascertain status"
+      else if ( profileMissing ) {
+        return 'impossible to ascertain status'
+      }
+     // If profile is active, profileActivation deactivates it and writes a `reason` prop holding the reason
+     else if ( !inactive ) {
+      profileObject.active = false;
+      profileObject.reason = reasonString;
+     }
+
+      // If profile is inactive, profileActivation activates it and deletes the `reason` prop from the object
+     else if ( inactive ) {
+      profileObject.active = true;
+      delete profileObject.reason;
+     }
+     return profileObject
+      // In both cases the updated profile object is returned
+
+
+      
     }
 
     // 👉 CHALLENGE 2
