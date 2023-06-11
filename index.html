@@ -186,14 +186,31 @@
   }
 
     // 👉 CHALLENGE 3
-    function booleanize() {
+    function booleanize( object ) {
       // 🧠 booleanize takes an object as its single argument, which can have any number of properties
       // Loop over the properties and then return the object, after applying the following transformations:
-      //    * If a value is the number zero, it must be transformed into the Boolean false
-      //    * If a value is the number one, it must be transformed into the Boolean true
-      //    * If a value is null, the whole key-value pair must be deleted from the object
+      console.log(object)
+      for ( let key in object ) {
+        // If a value is null, the whole key-value pair must be deleted from the object
+        if ( object[key] === null ) {
+          delete object[key];
+        }
+        // If a value is the number zero, it must be transformed into the Boolean false
+        else if ( object[key] === 0 ) {
+          object[key] = false;
+        } 
+        // If a property name exceeds 9 characters, return the string "shorten all prop names to 9 chars or less"
+        else if ( key.length > 9) {
+          return 'shorten all prop names to 9 chars or less'
+        }
+        // If a value is the number one, it must be transformed into the Boolean true
+        else if ( object[key] === 1 ) {
+          object[key] = true
+        }
+
+      } return object;
+
       // 🧠 Edge cases:
-      //    * If a property name exceeds 9 characters, return the string "shorten all prop names to 9 chars or less"
       // 🌟 HINT: careful not to perform any unintended changes on the object
     }
 
