@@ -235,21 +235,15 @@
       let arrayOfStrings = string.split(' ')
       // for loop to go through each array of words
       for ( let i = 0; i < arrayOfStrings.length; i++) {
-        console.log(arrayOfStrings.length)
-        console.log(arrayOfStrings)
-        console.log(arrayOfWords)
-        console.log(arrayOfStrings[i])
         // checks to see if string word === restricted word
         if ( arrayOfWords.includes(arrayOfStrings[i]) ) {
-          console.log('Yes It Includes ----> ' + arrayOfStrings[i])
 
           // for each letter in restricted word, replace it with x
           let xString = '';
           for ( let j = 0; j < arrayOfStrings[i].length; j++) {
             xString += 'x'
-          } console.log(xString)
+          } 
           // replace arrayOfStrings[i] with xString
-          console.log(arrayOfStrings[i]);
           arrayOfStrings[i] = xString;
         }
       }
@@ -259,19 +253,39 @@
     }
 
     // 👉 CHALLENGE 5
-    function normalizePhoneNumber() {
+    function normalizePhoneNumber( string ) {
       // 🧠 normalizePhoneNumber takes a string as its only argument, representing a ten-digit number
       // The function returns a string formatted as seen below
       // 🧠 Examples of usage:
       // normalizePhoneNumber("9876543210") // returns "(987) 654-3210"
       // normalizePhoneNumber("1111111111") // returns "(111) 111-1111"
+      let arrayOfString = string.split('')
+      let properLength = arrayOfString.length === 10
+
+      // If the argument is of an incorrect length, return the string "type a 10-digit number"
+      if ( !properLength ) {
+        return 'type a 10-digit number'
+      }
+      let number = Number(string)
+      if ( isNaN(number) ) {
+        return 'invalid phone number'
+      } else {
+        let left = '('
+        let right = ')'
+        let space = ' '
+        let middle = '-'
+        let firstThree = arrayOfString.slice( 0, 3 ).join('')
+        let secondThree = arrayOfString.slice( 3, 6 ).join('')
+        let last = arrayOfString.slice( 6, 10 ).join('')
+        let newString = left + firstThree + right + space + secondThree + middle + last
+        return newString
+    } 
       // 🧠 Edge cases:
-      //   * If the argument is of an incorrect length, return the string "type a 10-digit number"
       //   * If the argument is of the correct length but any character is not an integer between 0 and 9, return "invalid phone number"
       // 🌟 HINT: instead of looping over the number's digits, loop backwards over a template "(XXX) XXX-XXXX"
       // 🌟 HINT: at each iteration, if the current character is an "X", replace it with the result of popping a digit from the number
       // 🌟 HINT: if you'd rather loop forwards, use `shift` instead of `pop`
-    }
+  }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
