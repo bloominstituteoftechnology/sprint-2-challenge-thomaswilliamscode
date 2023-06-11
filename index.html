@@ -289,13 +289,34 @@
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
+      // 🌟 HINT: you need to keep track of the total number of throws, as well as how many sixes in a row
+      let throws = 0;
+      let sixes = 0;
+
+      // 🌟 HINT: research using `Math.random` to obtain a number from 1 to 6
+      let number = Math.floor( Math.random() * 6 ) + 1;
+
+      // 🌟 HINT: use `while(true)` to throw the dice indefinitely, but avoid an infinite loop by making sure to break out eventually
+      while ( sixes < 3 ) {
+        let number = Math.floor( Math.random() * 6 ) + 1;
+        if ( number === 6 ) {
+          sixes += 1;
+        }
+        throws ++
+        if ( sixes === 3 ) {
+          console.log('Finally, That took ' + throws + ' ' + 'throws.')
+          break;
+        }
+      }
+      
       // 🧠 diceRolls takes no arguments and returns a number
       // The function throws a six-sided dice until 3 sixes in a row are obtained
       // The number of throws it took to obtain that third-in-a-row six is then returned from the function
-      // 🌟 HINT: research using `Math.random` to obtain a number from 1 to 6
+
       // 🌟 HINT: use `while(true)` to throw the dice indefinitely, but avoid an infinite loop by making sure to break out eventually
-      // 🌟 HINT: you need to keep track of the total number of throws, as well as how many sixes in a row
     }
+
+    diceRolls();
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
