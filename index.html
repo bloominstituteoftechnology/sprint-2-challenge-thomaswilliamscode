@@ -128,7 +128,7 @@
     }
 
     // 👉 CHALLENGE 2
-    function mineSweeper() {
+    function mineSweeper( gridArrayOfArrays , coordinatesX, coordinatesY ) {
       // 🧠 mineSweeper takes a grid as its first argument, and coordinates x and y as the second and third args
       //  The grid is an array of arrays in the following format: [["🟥","🟦","🟥"],["🟦","🟥","🟥"],["🟥","🟦","🟦"]]
       //  Each subarray is a row of the grid, the first subarray being the top row:
@@ -146,7 +146,44 @@
       //    * If the player lands on blue, return the string "🟦 🥳"
       // 🧠 Edge cases:
       //    * If the x or y coordinates are under 1 or over 3, return the string "invalid coordinates"
+      let invalidCoord = ( ( coordinatesX <= 0 || coordinatesX >= 4 ) || ( coordinatesY <= 0 || coordinatesY >= 4 ) )
+      if ( invalidCoord ) {
+        return 'invalid coordinates'
+      }
+      //  Each subarray is a row of the grid, the first subarray being the top row:
+      //  [
+      //    ["🟥", "🟦", "🟥"],
+      //    ["🟦", "🟥", "🟥"],
+      //    ["🟥", "🟦", "🟦"]
+      //  ]
+      let row1 = gridArrayOfArrays[0];
+      let row2 = gridArrayOfArrays[1];
+      let row3 = gridArrayOfArrays[2];
+
+      let win = "🟦"
+      let current = '';
+      /*
+      */
+      if ( coordinatesY === 1 ) {
+        for ( let i = 0; i < coordinatesX; i++ ) {
+        current = row1[i]
+      }
+    } else if ( coordinatesY === 2 ) {
+        for ( let i = 0; i < coordinatesX; i++ ) {
+        current = row2[i]
+      }
+    } else if ( coordinatesY === 3 ) {
+        for ( let i = 0; i < coordinatesX; i++ ) {
+        current = row3[i]
+      }
     }
+    // If the player lands on blue, return the string "🟦 🥳"
+    if ( current === win ) {
+      return '🟦 🥳';
+    } else {
+      return '🟥 💀'
+    }
+  }
 
     // 👉 CHALLENGE 3
     function booleanize() {
