@@ -189,7 +189,6 @@
     function booleanize( object ) {
       // 🧠 booleanize takes an object as its single argument, which can have any number of properties
       // Loop over the properties and then return the object, after applying the following transformations:
-      console.log(object)
       for ( let key in object ) {
         // If a value is null, the whole key-value pair must be deleted from the object
         if ( object[key] === null ) {
@@ -215,7 +214,7 @@
     }
 
     // 👉 CHALLENGE 4
-    function scrub() {
+    function scrub( string, arrayOfWords ) {
       // 🧠 scrub takes a string "text" as its first argument, and an array of forbidden words "forbidden" as its second
       // Any word in the text included in the array of forbidden words is replaced with a word of equal length but made of lowcase "x"
       // The scrubbed text is then returned from the function, as seen in the examples below
@@ -223,10 +222,40 @@
       // 🧠 Examples of usage:
       //    scrub("out of the silent planet", ["of", "silent"]) // returns "out xx the xxxxxx planet"
       //    scrub("the ghost of the navigator", ["the"]) // returns "xxx ghost of xxx navigator"
-      //    scrub("lost somewhere in time", []) // returns "lost somewhere in time"
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
-      //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
+      let emptyString = Boolean(string) != true; 
+      let emptyArrayOfWords = Boolean(arrayOfWords[0]) != true;
+      // scrub("", ["high", "aces""]) // returns ""
+      // or scrub("lost somewhere in time", []) // returns "lost somewhere in time"
+      if ( emptyString || emptyArrayOfWords) {
+        return string;
+      }
+      // split the string into seperate words
+      let arrayOfStrings = string.split(' ')
+      // for loop to go through each array of words
+      for ( let i = 0; i < arrayOfStrings.length; i++) {
+        console.log(arrayOfStrings.length)
+        console.log(arrayOfStrings)
+        console.log(arrayOfWords)
+        console.log(arrayOfStrings[i])
+        // checks to see if string word === restricted word
+        if ( arrayOfWords.includes(arrayOfStrings[i]) ) {
+          console.log('Yes It Includes ----> ' + arrayOfStrings[i])
+
+          // for each letter in restricted word, replace it with x
+          let xString = '';
+          for ( let j = 0; j < arrayOfStrings[i].length; j++) {
+            xString += 'x'
+          } console.log(xString)
+          // replace arrayOfStrings[i] with xString
+          console.log(arrayOfStrings[i]);
+          arrayOfStrings[i] = xString;
+        }
+      }
+      arrayOfStrings = arrayOfStrings.join(' ')
+      return arrayOfStrings;
+
     }
 
     // 👉 CHALLENGE 5
